@@ -10,7 +10,7 @@
  * Author : Aleena,Athul,Arun (Uvionics Tec)
  */
 
-package com.oceanprotocolclient.assets;
+package com.oceanprotocol.client;
 
 import java.io.File;
 import java.io.IOException;
@@ -41,9 +41,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.oceanprotocolclient.interfaces.AssetsInterface;
-import com.oceanprotocolclient.model.Asset;
-import com.oceanprotocolclient.model.User;
+import com.oceanprotocol.model.Asset;
+import com.oceanprotocol.model.User;
 
 @SuppressWarnings("deprecation")
 public class Assetcontroller implements AssetsInterface {

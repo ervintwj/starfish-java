@@ -9,7 +9,7 @@
  * Author : Aleena , Athul ,Arun (Uvionics Tec)
  */
 
-package com.oceanprotocolclient.user;
+package com.oceanprotocol.client;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -30,8 +30,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.oceanprotocolclient.interfaces.UserInterface;
-import com.oceanprotocolclient.model.User;
+import com.oceanprotocol.model.User;
 
 public class UserController implements UserInterface {
 	

@@ -1,4 +1,4 @@
-package com.oceanprotocolclient;
+package com.oceanprotocol.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,6 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class OceanprotocolclientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(OceanprotocolclientApplication.class, args);
+		// SpringApplication.run(OceanprotocolclientApplication.class, args);
 	}
 }

@@ -3,7 +3,7 @@
  * upload asset and download assets.
  */
 
-package com.oceanprotocolclient.interfaces;
+package com.oceanprotocol.client;
 
 import java.io.File;
 import java.net.URL;
@@ -11,8 +11,8 @@ import java.net.URL;
 import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
 
-import com.oceanprotocolclient.model.Asset;
-import com.oceanprotocolclient.model.User;
+import com.oceanprotocol.model.Asset;
+import com.oceanprotocol.model.User;
 
 public interface AssetsInterface {
 	/**

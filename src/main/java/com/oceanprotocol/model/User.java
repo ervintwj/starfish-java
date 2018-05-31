@@ -1,4 +1,4 @@
-package com.oceanprotocolclient.model;
+package com.oceanprotocol.model;
 
 public class User {
 	String id;

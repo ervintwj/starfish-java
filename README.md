@@ -1,6 +1,8 @@
-# Ocean java - Ocean Protocol Client API
+# ocean-java - Ocean Protocol Client API for Java
 
-Ocean protocol client API used for connecting to ocean protocol using Java and Spring Boot.
+Ocean protocol client API used for connecting to ocean protocol using Java.
+
+
 
 ## Getting Started
 
@@ -17,11 +19,11 @@ To get started you can simply clone this repository using git
 
 The configuration is located in `src/resources/application.properties`.
 
-### To run
+### To test
 You can run the application from the command line using:
 
 ```
-mvn spring-boot:run
+mvn test
 
 ```
 ### To create jar file

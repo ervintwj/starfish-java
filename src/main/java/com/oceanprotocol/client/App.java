@@ -1,7 +1,7 @@
 package com.oceanprotocol.client;
 
 /**
- * Main class for runnning ocean-java as a standalone application froim a .jar file.
+ * Main class for runnning ocean-java as a standalone application from a .jar file.
  * 
  * May be extended in future to support CLI usage.
  * 

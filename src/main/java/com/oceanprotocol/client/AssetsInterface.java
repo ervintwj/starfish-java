@@ -8,11 +8,7 @@ package com.oceanprotocol.client;
 import java.io.File;
 import java.net.URL;
 
-import org.json.simple.JSONObject;
-import org.springframework.http.ResponseEntity;
-
 import com.oceanprotocol.model.Asset;
-import com.oceanprotocol.model.Actor;
 
 public interface AssetsInterface {
 	/**

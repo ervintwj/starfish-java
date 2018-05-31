@@ -12,7 +12,7 @@ import org.json.simple.JSONObject;
 import org.springframework.http.ResponseEntity;
 
 import com.oceanprotocol.model.Asset;
-import com.oceanprotocol.model.User;
+import com.oceanprotocol.model.Actor;
 
 public interface AssetsInterface {
 	/**

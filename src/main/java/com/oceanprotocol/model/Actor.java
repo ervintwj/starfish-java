@@ -1,6 +1,6 @@
 package com.oceanprotocol.model;
 
-public class User {
+public class Actor {
 	String id;
 	String actorId;
 	String name;
@@ -19,7 +19,7 @@ public class User {
 	String creationDatetime;
 	
 
-	public User() {
+	public Actor() {
 	}
 
 

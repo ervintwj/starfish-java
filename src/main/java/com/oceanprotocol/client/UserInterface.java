@@ -4,7 +4,7 @@ import java.net.URL;
 
 import org.springframework.http.ResponseEntity;
 
-import com.oceanprotocol.model.User;
+import com.oceanprotocol.model.Actor;
 
 public interface UserInterface {
 	/**
@@ -14,7 +14,7 @@ public interface UserInterface {
 	 * @param targetUrl -  Ocean network host and port 
 	 * @return
 	 */
-	User userRegistration(URL url,String actorId);
+	Actor userRegistration(URL url,String actorId);
 	/**
 	 * Get actor information
 	 * 
@@ -22,7 +22,7 @@ public interface UserInterface {
 	 * @param targetUrl - Ocean network host and port 
 	 * @return
 	 */
-	User getActor(URL url,String actorId);
+	Actor getActor(URL url,String actorId);
 	/**
 	 * Update actor name
 	 * 
@@ -30,13 +30,13 @@ public interface UserInterface {
 	 * @param name - actor name
 	 * @return
 	 */
-	User updateActor(URL url, String actorId,String actorName);
+	Actor updateActor(URL url, String actorId,String actorName);
 	/**
 	 * 
 	 * @param targetUrl - Ocean network host and port 
 	 * @param id - To disable the actor
 	 * @return
 	 */
-	User disableActor(URL url, String actorId);
+	Actor disableActor(URL url, String actorId);
 	}
 

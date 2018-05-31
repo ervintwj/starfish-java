@@ -30,7 +30,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-import com.oceanprotocol.model.User;
+import com.oceanprotocol.model.Actor;
 
 public class UserController implements UserInterface {
 	
@@ -46,10 +46,10 @@ public class UserController implements UserInterface {
 	 *         "/api/v1/keeper/actors/actor/"
 	 */
 
-	public User userRegistration(URL url, String actorId) {
+	public Actor userRegistration(URL url, String actorId) {
 		String oceanurl = env.getProperty("userURL");
 		// Create object for user class..it include all user details
-		User user = new User();
+		Actor user = new Actor();
 		// Initialize postResp - response from ocean network is given to this
 		// variable
 		String postActorResp = null;
@@ -120,10 +120,10 @@ public class UserController implements UserInterface {
 	 *         "/api/v1/keeper/actors/actor/<actor_id>"
 	 */
 
-	public User getActor(URL url, String actorId) {
+	public Actor getActor(URL url, String actorId) {
 		String oceanurl = env.getProperty("userURL") + actorId;
 		// Create object for user class..it include all user details
-		User user = new User();
+		Actor user = new Actor();
 		// Initialize postResp - response from ocean network is given to this
 		// variable
 		String getActorResp = null;
@@ -178,9 +178,9 @@ public class UserController implements UserInterface {
 	 *
 	 */
 	@Override
-	public User updateActor(URL url, String actorId, String actorName) {
+	public Actor updateActor(URL url, String actorId, String actorName) {
 		String oceanurl = env.getProperty("userURL") + actorId;
-		User user = new User();
+		Actor user = new Actor();
 		ResponseEntity<String> updatedresponse;
 		try {
 			RestTemplate restTemplate = new RestTemplate();
@@ -229,9 +229,9 @@ public class UserController implements UserInterface {
 	 * @return response
 	 */
 	@Override
-	public User disableActor(URL url, String actorId) {
+	public Actor disableActor(URL url, String actorId) {
 		String oceanurl = env.getProperty("userURL") + actorId;
-		User user = new User();
+		Actor user = new Actor();
 		ResponseEntity<String> updatedresponse = null;
 		try {
 			RestTemplate restTemplate = new RestTemplate();

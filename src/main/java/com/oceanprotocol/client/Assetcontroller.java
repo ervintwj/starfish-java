@@ -42,7 +42,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
 import com.oceanprotocol.model.Asset;
-import com.oceanprotocol.model.User;
+import com.oceanprotocol.model.Actor;
 
 @SuppressWarnings("deprecation")
 public class Assetcontroller implements AssetsInterface {

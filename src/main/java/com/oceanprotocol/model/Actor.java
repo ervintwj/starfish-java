@@ -1,5 +1,9 @@
 package com.oceanprotocol.model;
 
+/**
+ * Represents an Actor on the Ocean Network.
+ *
+ */
 public class Actor {
 	String id;
 	String actorId;

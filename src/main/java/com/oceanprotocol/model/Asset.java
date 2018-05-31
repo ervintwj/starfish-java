@@ -2,6 +2,9 @@ package com.oceanprotocol.model;
 
 import java.util.Date;
 
+/**
+ * Represents an asset on the Ocean Network.
+ */
 public class Asset {
 	private String id;
 	private String publisherId;

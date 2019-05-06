@@ -114,6 +114,16 @@ public class MemoryAsset extends AMemoryAsset implements DataAsset {
         return new MemoryAsset(data,buildMetaData(data,meta));
     }
 
+    /**
+     * Creates a MemoryAsset with the finalized metadata and content
+     *
+     * @param meta A string containing the finalized metadata for this asset
+     * @param data Byte array containing the data for this asset
+     * @return The newly created in-memory asset
+     */
+    public static MemoryAsset create(byte[] data, String meta) {
+        return new MemoryAsset(data,meta);
+    }
 
     /**
      * Gets InputStream corresponding to this Asset

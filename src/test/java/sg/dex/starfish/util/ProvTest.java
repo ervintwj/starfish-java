@@ -30,7 +30,7 @@ import java.util.ArrayList;
 
 public class ProvTest {
 
-    @Test public void testProvWrite() {
+    @Test public void testProvInvoke() {
         Document d=Prov.iof.newDocument();
         d.setNamespace(Prov.defaultNS);
         Agent ag=Prov.createAgent("503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00");
@@ -40,7 +40,7 @@ public class ProvTest {
         assets.add("26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220136");
         List<Entity> la=Prov.createInputs(assets);
         d.getStatementOrBundle().addAll(la);
-        Activity a= Prov.createActivity();
+        Activity a= Prov.createInvokeActivity("randomstring","encodedparams","encodedresults");
         d.getStatementOrBundle().add(a);
         d.getStatementOrBundle().add(Prov.getGeneratedBy(la.get(0),a));
 
@@ -52,7 +52,26 @@ public class ProvTest {
 
         d.getStatementOrBundle().addAll(wdflist);
         InteropFramework iof=new InteropFramework();
-        iof.writeDocument("/tmp/abcd.json", InteropFramework.ProvFormat.JSON ,d);
+        iof.writeDocument("/tmp/invoke.json", InteropFramework.ProvFormat.JSON ,d);
 
+    }
+
+    @Test public void testProvPublish() {
+        Document d=Prov.iof.newDocument();
+        d.setNamespace(Prov.defaultNS);
+        Agent ag=Prov.createAgent("503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00");
+        d.getStatementOrBundle().add(ag);
+        List<String> assets=new ArrayList<String>();
+        assets.add("this");
+        List<Entity> la=Prov.createInputs(assets);
+        d.getStatementOrBundle().addAll(la);
+        Activity a= Prov.createPublishActivity("randomstring");
+        d.getStatementOrBundle().add(a);
+        d.getStatementOrBundle().add(Prov.getGeneratedBy(la.get(0),a));
+
+        d.getStatementOrBundle().add(Prov.getAssociatedWith(a,ag));
+
+        InteropFramework iof=new InteropFramework();
+        iof.writeDocument("/tmp/publish.json", InteropFramework.ProvFormat.JSON ,d);
     }
 }

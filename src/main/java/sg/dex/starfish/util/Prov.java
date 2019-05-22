@@ -38,13 +38,14 @@ public class Prov{
                           doc);
     }
 
+    public static String OPF="opf";
     /*
      * Create a default namespace which includes the prefix and path for Oceanprotocol schema
      */
     public static Namespace defaultNamespace(){
         Namespace ins = new Namespace();
         ins.addKnownNamespaces();
-        ins.register("ocn", "http://oceanprotocol.com/schemas");
+        ins.register(OPF,"http://oceanprotocol.com/schemas");
         return ins;
     }
 
@@ -59,7 +60,7 @@ public class Prov{
 
         List<Entity> ret=new ArrayList<Entity>();
         for (String i:inputAssets){
-            Entity e=iof.newEntity(defaultNS.qualifiedName("ocn", i, iof));
+            Entity e=iof.newEntity(defaultNS.qualifiedName(OPF, i, iof));
             e.getType().add(iof.newType("ocn:asset",defaultNS.qualifiedName("xsd", "string", iof)));
             ret.add(e);
         }
@@ -72,7 +73,7 @@ public class Prov{
      */
     public static Activity createPublishActivity(String localname){
 
-        Activity ret=iof.newActivity(defaultNS.qualifiedName("ocn", localname,iof));
+        Activity ret=iof.newActivity(defaultNS.qualifiedName(OPF, localname,iof));
         ret.setEndTime(iof.newTimeNow());
         ret.getType().add(iof.newType("ocn:publish",defaultNS.qualifiedName("xsd", "string", iof)));
         return ret;
@@ -83,12 +84,12 @@ public class Prov{
      */
     public static Activity createInvokeActivity(String localname, String params,String results){
 
-        Activity ret=iof.newActivity(defaultNS.qualifiedName("ocn", localname,iof));
+        Activity ret=iof.newActivity(defaultNS.qualifiedName(OPF, localname,iof));
         ret.setEndTime(iof.newTimeNow());
         ret.getType().add(iof.newType("ocn:operation",defaultNS.qualifiedName("xsd", "string", iof)));
-        ret.getOther().add(iof.newOther(defaultNS.qualifiedName("ocn", "results", iof),results ,
+        ret.getOther().add(iof.newOther(defaultNS.qualifiedName(OPF, "results", iof),results ,
         defaultNS.qualifiedName("xsd", "string", iof)));
-                ret.getOther().add(iof.newOther(defaultNS.qualifiedName("ocn", "params", iof),
+                ret.getOther().add(iof.newOther(defaultNS.qualifiedName(OPF, "params", iof),
                                                 params,
         defaultNS.qualifiedName("xsd", "string", iof)));
         return ret;
@@ -98,7 +99,7 @@ public class Prov{
      * Returns an Agent given an agentId (identified by ethereum account)
      */
     public static Agent createAgent(String agentId){
-        Agent e=iof.newAgent(defaultNS.qualifiedName("ocn", agentId, iof));
+        Agent e=iof.newAgent(defaultNS.qualifiedName(OPF, agentId, iof));
         e.getType().add(iof.newType("ocn:ethereum-account",defaultNS.qualifiedName("xsd", "string", iof)));
         return e;
     }
@@ -160,7 +161,7 @@ public class Prov{
     }
 
     /*
-     * Creates Invoke Metadata
+     * returns a JSON encoded String representation of Invoke Metadata
      */
     public static String invokeMetadata(String agentid,
                                         List<String> assetDependencies,

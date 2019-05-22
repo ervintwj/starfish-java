@@ -123,23 +123,21 @@
 			<version>4.5.8</version>
 		</dependency>
 
-		<dependency>
-    <groupId>org.openprovenance.prov</groupId>
-    <artifactId>prov-model</artifactId>
-    <version>0.7.3</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.openprovenance.prov/prov-interop -->
-<dependency>
-    <groupId>org.openprovenance.prov</groupId>
-    <artifactId>prov-interop</artifactId>
-    <version>0.7.3</version>
-</dependency>
-<!-- https://mvnrepository.com/artifact/org.openprovenance.prov/prov-json -->
-<dependency>
-    <groupId>org.openprovenance.prov</groupId>
-    <artifactId>prov-json</artifactId>
-    <version>0.7.3</version>
-</dependency>
+    <dependency>
+      <groupId>org.openprovenance.prov</groupId>
+      <artifactId>prov-model</artifactId>
+      <version>0.7.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openprovenance.prov</groupId>
+      <artifactId>prov-interop</artifactId>
+      <version>0.7.3</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openprovenance.prov</groupId>
+      <artifactId>prov-json</artifactId>
+      <version>0.7.3</version>
+    </dependency>
 	</dependencies>
 
 	<reporting>

@@ -19,7 +19,9 @@ import org.openprovenance.prov.interop.InteropFramework;
 import org.openprovenance.prov.json.JSONConstructor;
 
 import java.util.List;
+import java.util.UUID;
 import java.io.OutputStream;
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
 public class Prov{
@@ -129,5 +131,66 @@ public class Prov{
             ret.add(wdf);
         }
         return ret;
+    }
+
+    /*
+     * Returns a JSON encoded String containing metadata for publishing
+     */
+    public static String publishMetadata(String agentid){
+        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        Document d=iof.newDocument();
+        d.setNamespace(defaultNS);
+        Agent ag=createAgent(agentid);
+        d.getStatementOrBundle().add(ag);
+        List<String> assets=new ArrayList<String>();
+        assets.add("this");
+
+        List<Entity> la=createInputs(assets);
+        d.getStatementOrBundle().addAll(la);
+
+        Activity a= createPublishActivity(UUID.randomUUID().toString());
+        d.getStatementOrBundle().add(a);
+        d.getStatementOrBundle().add(getGeneratedBy(la.get(0),a));
+
+        d.getStatementOrBundle().add(getAssociatedWith(a,ag));
+
+        InteropFramework iof=new InteropFramework();
+        iof.writeDocument(baos, InteropFramework.ProvFormat.JSON ,d);
+        return baos.toString();
+    }
+
+    /*
+     * Creates Invoke Metadata
+     */
+    public static String invokeMetadata(String agentid,
+                                        List<String> assetDependencies,
+                                        String params,
+                                        String results){
+        Document d=Prov.iof.newDocument();
+        d.setNamespace(Prov.defaultNS);
+        Agent ag=Prov.createAgent(agentid);
+        d.getStatementOrBundle().add(ag);
+        List<String> assets=new ArrayList<String>();
+        assets.add("this");
+        for(String s:assetDependencies){
+            assets.add(s); 
+        }
+        List<Entity> la=Prov.createInputs(assets);
+        d.getStatementOrBundle().addAll(la);
+        Activity a= Prov.createInvokeActivity(UUID.randomUUID().toString(),params,results);
+        d.getStatementOrBundle().add(a);
+        d.getStatementOrBundle().add(Prov.getGeneratedBy(la.get(0),a));
+
+        List<Entity> la2=new ArrayList<Entity>();
+        la2.add(la.get(1));
+        List<WasDerivedFrom> wdflist = Prov.wasDerivedFrom(la2,la.get(0));
+        d.getStatementOrBundle().add(Prov.getAssociatedWith(a,ag));
+
+        d.getStatementOrBundle().addAll(wdflist);
+        InteropFramework iof=new InteropFramework();
+
+        ByteArrayOutputStream baos=new ByteArrayOutputStream();
+        iof.writeDocument(baos, InteropFramework.ProvFormat.JSON ,d);
+        return baos.toString();
     }
 }

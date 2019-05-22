@@ -8,11 +8,14 @@ import sg.dex.starfish.Asset;
 import sg.dex.starfish.impl.memory.MemoryAsset;
 import sg.dex.starfish.impl.remote.RemoteAgent;
 import sg.dex.starfish.impl.remote.RemoteAsset;
+import sg.dex.starfish.util.Prov;
+import sg.dex.starfish.util.JSONObjectCache;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
 
 /**
  * As a developer working with Ocean,
@@ -88,6 +91,33 @@ public class AssetIdentity_02 {
         assertEquals(remoteAsset.getMetadata().get("name").toString(), "Fig");
         assertEquals(remoteAsset.getMetadata().get("location").toString(), "Singapore");
 
+    }
+
+    @Test
+    public void createAssetWithProvMetadata(){
+        byte[] data = new byte[]{1, 2, 3};
+        // update the metadata
+        Map<String, Object> metaDataAsset = new HashMap<>();
+        metaDataAsset.put("id", "123");
+        metaDataAsset.put("name", "Fig");
+        metaDataAsset.put("location", "Singapore");
+
+        String pubmetadata=Prov.publishMetadata("503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00");
+        ;
+        metaDataAsset.put("provenance",JSONObjectCache.parse(pubmetadata));
+        // creating asset with MetaData
+        Asset asset2 = MemoryAsset.create( data,metaDataAsset);
+        RemoteAsset remoteAsset = (RemoteAsset)remoteAgent.registerAsset(asset2);
+
+        // uploading the Asset this remote Agent
+        remoteAgent.uploadAsset(asset2);
+
+        // get the Remote asset ID which has been register using remote Agent
+        String assetID = remoteAsset.getAssetID();
+
+        //verify prov info exists
+        assertNotNull(remoteAsset.getMetadata().get("provenance").toString());
+       
     }
 
     @Test

@@ -1,12 +1,13 @@
 package sg.dex.starfish.util;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Arrays;
 import java.util.Collection;
 
 import org.junit.Test;
 import java.io.FileOutputStream;
+import java.io.File;
 
 import org.openprovenance.prov.model.Activity;
 import org.openprovenance.prov.model.Agent;
@@ -26,6 +27,8 @@ import org.openprovenance.prov.json.JSONConstructor;
 
 import java.util.List;
 import java.io.OutputStream;
+import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 
 public class ProvTest {
@@ -52,8 +55,15 @@ public class ProvTest {
 
         d.getStatementOrBundle().addAll(wdflist);
         InteropFramework iof=new InteropFramework();
-        iof.writeDocument("/tmp/invoke.json", InteropFramework.ProvFormat.JSON ,d);
 
+        try{
+            
+            File temp = File.createTempFile("invoke", ".json");
+            iof.writeDocument(temp.getAbsolutePath(), InteropFramework.ProvFormat.JSON ,d);
+            assertTrue(temp.length()>0);
+        }catch(IOException ioe){
+            fail("file has length = 0");
+        }
     }
 
     @Test public void testProvPublish() {
@@ -72,6 +82,30 @@ public class ProvTest {
         d.getStatementOrBundle().add(Prov.getAssociatedWith(a,ag));
 
         InteropFramework iof=new InteropFramework();
-        iof.writeDocument("/tmp/publish.json", InteropFramework.ProvFormat.JSON ,d);
+
+        try{
+            
+            File temp = File.createTempFile("publish", ".json");
+            iof.writeDocument(temp.getAbsolutePath(), InteropFramework.ProvFormat.JSON ,d);
+            assertTrue(temp.length()>0);
+        }catch(IOException ioe){
+            fail("file has length = 0");
+        }
     }
+
+    @Test public void testProvPublishString() {
+        assertNotNull(Prov.publishMetadata("503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00"));
+    }
+
+    @Test public void testInvokeMetaString() {
+
+        List<String> assets=new ArrayList<String>();
+        assets.add("26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220135/26cb1a92e8a6b52e47e6e13d04221e9b005f70019e21c4586dad3810d46220136");
+
+        assertNotNull(Prov.invokeMetadata("503a7b959f91ac691a0881ee724635427ea5f3862aa105040e30a0fee50cc1a00",
+                                          assets,
+                                          "encodedparams",
+                                          "encodedresults"));
+    }
+
 }

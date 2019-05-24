@@ -9,7 +9,7 @@ import java.util.Map;
  * Interface representing a listing of an asset on the Ocean Network
  * <p>
  * Listings can be used to query and purchase Assets
- *
+ * @version 0.5
  * @author Mike
  */
 public interface Listing {
@@ -71,5 +71,11 @@ public interface Listing {
      * @return Listing ID
      */
     public String getId();
+    
+    /**
+     * Gets the Asset ID of this listing
+     * @return The Asset ID
+     */
+    public String getAssetID();
 
 }

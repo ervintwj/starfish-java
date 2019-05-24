@@ -61,19 +61,10 @@ public class MemoryPurchase implements Purchase {
         return agent.getListing(meta.get(LISTING_ID).toString());
     }
 
-    /**
-     * API to get the information of the Purchase
-     *
-     * @return map of info present in metadata
-     */
+
     @Override
     public Map<String, Object> getInfo() {
         return meta.get(INFO) == null ? null : (Map<String, Object>) meta.get(INFO);
-    }
-
-    @Override
-    public Purchase refresh() {
-        return null;
     }
 
     @Override
@@ -81,11 +72,6 @@ public class MemoryPurchase implements Purchase {
         return meta.get(STATUS) == null ? null : meta.get(STATUS).toString();
     }
 
-    /**
-     * API to get the metadata of this purchase
-     *
-     * @return map of metadata associated with this purchase
-     */
     @Override
     public Map<String, Object> getMetaData() {
         return meta;
